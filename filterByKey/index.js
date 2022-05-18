@@ -87,10 +87,19 @@ const expected4 = [
 ];
 
 
-function filterByKey(items, searchFor, searchBy) {
-    return items.filter( obj => obj[searchBy].startsWith(searchFor))
-    
+function filterByKey(items, searchFor, searchBy, method='startsWith') {
+    switch (method) {
+        case 'startsWith':
+            return items.filter( obj => obj[searchBy].startsWith(searchFor))
+        case 'includes':
+            return items.filter( obj => obj[searchBy].includes(searchFor.toLowerCase()))
+    }
 }
+
+console.log(filterByKey(people, searchFor1, searchBy1))
+console.log(filterByKey(people, searchFor2, searchBy2))
+console.log(filterByKey(people, searchFor3, searchBy3))
+console.log(filterByKey(people, searchFor4, searchBy4,searchMethod4))
 
 /**
  * Filters the given items based on the search criteria using a startsWith
@@ -100,3 +109,4 @@ function filterByKey(items, searchFor, searchBy) {
  * @param {Array<Object>} items The items to be filtered.
  * @param {string} searchBy The key to search by.
 ... (4 lines left)
+**/
